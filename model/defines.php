@@ -47,7 +47,7 @@
 		require_class('conexao.class.php');
 		$con=new Conexao();
 		$qr=$con->query("select img from usuarios where user='".$_SESSION['user']."' limit 1");
-		while($res=mysql_fetch_array($qr)){
+		while($res=$qr->fetch_array()){
 			return $res['img'];
 		}
 	}

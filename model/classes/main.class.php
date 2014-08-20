@@ -28,6 +28,7 @@
 					</div>
 				';
 			}else{
+
 				echo '<img src="'.IMAGENS.'/cat.png" width="25" style="cursor:pointer;"  >';
 				$this->login='
 					
@@ -49,9 +50,13 @@
 			require_class("conexao.class.php");
 			$con=new Conexao();
 			$qr=$con->query("select * from menus");
-			while($res=mysql_fetch_array($qr)){
+			while($res=$qr->fetch_array(MYSQLI_BOTH)){
 				echo '<a href="'.$res['link'].'">'.$res['desc_menu'].'</a>';
 			}
+		}
+
+		function main_slides(){
+			echo "teste";
 		}
 	}
 ?>

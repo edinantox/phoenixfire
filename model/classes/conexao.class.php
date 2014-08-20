@@ -1,15 +1,17 @@
 <?php
 class Conexao{
 	function conectar(){
-		$con=mysql_connect("localhost","site","site");
-		mysql_select_db("phoenixlight",$con);
+		$con=new mysqli("localhost","site","site","phoenixlight");
+		if ($con->connect_error) {
+			die('Connect Error (' . $mysqli->connect_errno . ') '. $con->connect_error);
+		}
 		return $con;
 	}
 	
 	function query($qr){
 		$con=$this->conectar();
-		$res=mysql_query($qr) or die($qr."<br>".mysql_error());
-		mysql_close($con);
+		$res=$con->query($qr) or die($qr."<br>".mysql_error());
+		$con->close();
 		return $res;
 	}
 }
